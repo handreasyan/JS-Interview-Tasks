@@ -143,3 +143,30 @@ function multiplyByTwo(a) {
   };
 }
 console.log(multiplyByTwo(3)(4)(1)(1)(10)());
+
+// Bankomat =====================================
+function iWantToGet(ammountReq, limits) {
+  const nominals = Object.keys(limits)
+    .map(Number)
+    .sort((a, b) => b - a);
+  function collect(amount, noms) {
+    if (amount === 0) return {};
+    if (!noms.length) return;
+    let current = noms[0];
+    let count = Math.min(limits[current], Math.floor(amount / current));
+
+    for (let i = count; i >= 0; i--) {
+      let result = collect(amount - current * i, noms.slice(1));
+      if (result) {
+        return i ? { [current]: i, ...result } : result;
+      }
+    }
+  }
+  return collect(ammountReq, nominals);
+}
+let limits = { 1000: 5, 500: 2, 100: 5, 50: 100, 30: 6 };
+console.log(iWantToGet(230, limits)); // =>  {30: 1, 100: 2}
+console.log(iWantToGet(1000, limits)); // => {1000: 1}
+console.log(iWantToGet(120, limits)); // => {30: 4}
+console.log(iWantToGet(275, limits)); // => undefined (not valid)
+console.log(iWantToGet(10000, limits)); // => {50: 70, 100: 5, 500: 2, 1000: 5}
