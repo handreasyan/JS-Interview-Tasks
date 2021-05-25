@@ -170,3 +170,45 @@ console.log(iWantToGet(1000, limits)); // => {1000: 1}
 console.log(iWantToGet(120, limits)); // => {30: 4}
 console.log(iWantToGet(275, limits)); // => undefined (not valid)
 console.log(iWantToGet(10000, limits)); // => {50: 70, 100: 5, 500: 2, 1000: 5}
+
+//  Prostie chisla  ===================
+function isPrime(num) {
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+console.log(isPrime(120));
+
+function getPrimes(num) {
+  let primes = [];
+  let arr = [];
+  for (let i = 2; i <= num; i++) {
+    if (!arr[i]) {
+      primes.push(i);
+      for (let j = i * i; j <= num; j += i) {
+        arr[j] = true;
+      }
+    }
+  }
+  return primes;
+}
+
+console.log(getPrimes(120));
+
+// sum of two =====================
+
+function sumOfTwo2(arr, target) {
+  let cur = null;
+  let newArr = [...arr];
+  arr.forEach((el, i) => {
+    let n = target - el;
+    if (newArr.includes(n) && !cur && newArr[i] !== n) {
+      cur = n + " " + el;
+    }
+  });
+  return cur;
+}
+console.log(sumOfTwo2([654, 654, 3216, 4], 658));
