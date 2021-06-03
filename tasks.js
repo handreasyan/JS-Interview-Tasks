@@ -218,7 +218,7 @@ let arr = [-1, 0, 3, 5, 7, 9, 12];
 let search = function (nums, target) {
   let left = 0;
   let rigth = nums.length - 1;
-  let mid; // = 4;
+  let mid; 
 
   while (left <= rigth) {
     mid = Math.round((rigth - left) / 2) + left;
