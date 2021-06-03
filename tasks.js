@@ -212,3 +212,26 @@ function sumOfTwo2(arr, target) {
   return cur;
 }
 console.log(sumOfTwo2([654, 654, 3216, 4], 658));
+// Binary Search Algorithm
+let arr = [-1, 0, 3, 5, 7, 9, 12];
+
+let search = function (nums, target) {
+  let left = 0;
+  let rigth = nums.length - 1;
+  let mid; // = 4;
+
+  while (left <= rigth) {
+    mid = Math.round((rigth - left) / 2) + left;
+    if (target === nums[mid]) {
+      return mid;
+    } else if (target < nums[mid]) {
+      rigth = mid - 1;
+    } else {
+      left = mid + 1;
+    }
+  }
+  return -1;
+};
+
+console.log(search(arr, 123));
+
