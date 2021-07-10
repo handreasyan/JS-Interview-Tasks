@@ -843,3 +843,56 @@ for (let i = 0; i < 10; i++) {
   console.log(shuffle(input));
   console.log(shuffle2(input));
 }
+
+
+// functions ================
+function logic([x, z, y]) {
+  switch (z) {
+    case "+":
+      return y + x;
+    case "-":
+      return y - x;
+    case "/":
+      return y / x;
+    case "*":
+      return y * x;
+  }
+}
+const one = (arr) => (arr ? logic([...arr, 1]) : 1);
+const two = (arr) => (arr ? logic([...arr, 2]) : 2);
+const three = (arr) => (arr ? logic([...arr, 3]) : 3);
+const four = (arr) => (arr ? logic([...arr, 4]) : 4);
+const five = (arr) => (arr ? logic([...arr, 5]) : 5);
+const six = (arr) => (arr ? logic([...arr, 6]) : 6);
+const seven = (arr) => (arr ? logic([...arr, 7]) : 7);
+const eigth = (arr) => (arr ? logic([...arr, 8]) : 8);
+const nine = (arr) => (arr ? logic([...arr, 9]) : 9);
+//-
+const plus = (x) => [x, "+"];
+const minus = (x) => [x, "-"];
+const divide = (x) => [x, "/"];
+const multi = (x) => [x, "*"];
+
+console.log(one(plus(one(plus(one()))))); // 3
+console.log(five(plus(six(minus(seven(multi(eigth(divide(two()))))))))); // -17
+console.log(one(minus(nine(multi(six(multi(eigth()))))))); // -431
+console.log(four(multi(three()))); // 12
+console.log(four(divide(two()))); // 2
+
+
+// get contcert times  - ------------------------
+const concerts = {
+  Russia: new Date("2020-04-01"),
+  USA: new Date("2021-09-02"),
+  France: new Date("2028-04-21"),
+  Armenia: new Date("2021-07-15"),
+  German: new Date("2019-01-08"),
+  Italy: new Date("2021-04-03"),
+};
+
+function concertSort(obj) {
+  return Object.keys(obj)
+    .filter((name) => obj[name] > new Date())
+    .sort((a, b) => obj[a] - obj[b]);
+}
+console.log(concertSort(concerts));
